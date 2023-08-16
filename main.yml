@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  connection: local
+  vars_files:
+    - default.config.yml
+    
+  pre_tasks:
+      - name: dotfiles_files_common
+        when: ansible_os_family != 'Darwin'
+        set_fact:
+          dotfiles_files: "{{ dotfiles_files_common }}"
+      - name: dotfiles_files_common - MacOS
+        when: ansible_os_family == 'Darwin'
+        set_fact:
+          dotfiles_files: "{{ dotfiles_files_common + dotfiles_files_darwin }}"
+
+  roles:
+    - role: geerlingguy.mac.homebrew
+      when: ansible_os_family == 'Darwin'
+      tags: ["homebrew"]
+    - role: elliotweiser.osx-command-line-tools
+      when: ansible_os_family == 'Darwin'
+    - role: geerlingguy.dotfiles
+  tasks:
+    
+    - name: "add homebrew tools"
+      homebrew: name={{ item }} state=present
+      with_items:
+        - age
+        - yamllint
+        - starship
+        - neovim
+        - fd
+        - exa
+        - bat
+        - jq
+        - fzf
+    - name: MacOS Tasks
+      when: ansible_os_family == 'Darwin'
+      import_tasks: ./tasks/osx.yml

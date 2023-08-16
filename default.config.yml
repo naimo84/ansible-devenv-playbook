@@ -1,0 +1,15 @@
+ansible_connection: local
+dotfiles_repo: "https://github.com/naimo84/dotfiles.git"
+dotfiles_repo_version: main
+dotfiles_repo_accept_hostkey: false
+dotfiles_repo_local_destination: "~/Documents/dotfiles"
+osx_script: "~/.osx --no-restart"
+dotfiles_home: "~"
+dotfiles_files_darwin:
+  - .osx
+dotfiles_files_common:
+  - .zshrc
+  - .zshenv
+  - .bashrc
+  - .config/starship.toml
+  - .config/nvim
