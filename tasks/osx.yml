@@ -3,3 +3,7 @@
 - name: Run .osx dotfiles.
   command: "{{ osx_script }}"
   changed_when: false
+- name: "add homebrew tools"
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+    - iterm2

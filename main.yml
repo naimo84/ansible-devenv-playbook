@@ -21,12 +21,13 @@
     - role: elliotweiser.osx-command-line-tools
       when: ansible_os_family == 'Darwin'
     - role: geerlingguy.dotfiles
-  tasks:
-    
+  tasks:    
     - name: "add homebrew tools"
       homebrew: name={{ item }} state=present
       with_items:
         - age
+        - kubectl
+        - krew
         - yamllint
         - starship
         - neovim
