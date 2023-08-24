@@ -36,6 +36,10 @@
         - bat
         - jq
         - fzf
+    - name: Install Krew plugins
+      shell: "kubectl krew install {{ item }}"
+      with_items: "{{ krew_plugins }}"
+      when: krew_plugins is defined
     - name: MacOS Tasks
       when: ansible_os_family == 'Darwin'
       import_tasks: ./tasks/osx.yml
