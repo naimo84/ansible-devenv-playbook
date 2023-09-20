@@ -13,5 +13,6 @@ dotfiles_files_common:
   - .bashrc
   - .config/starship.toml
   - .config/nvim
+  - .config/zsh
 krew_plugins:
   - ctx
