@@ -37,6 +37,7 @@
         - jq
         - fzf
         - vimpager
+        - git-filter-repo
     - name: Install Krew plugins
       shell: "kubectl krew install {{ item }}"
       with_items: "{{ krew_plugins }}"
