@@ -2,7 +2,7 @@
 
 ## Install Homebrew
 ```sh
-/bin/bash -c "$(curl -fsSL h/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ## Install ansible 
