@@ -5,14 +5,16 @@
     - default.config.yml
     
   pre_tasks:
-      - name: dotfiles_files_common
-        when: ansible_os_family != 'Darwin'
-        set_fact:
-          dotfiles_files: "{{ dotfiles_files_common }}"
-      - name: dotfiles_files_common - MacOS
-        when: ansible_os_family == 'Darwin'
-        set_fact:
-          dotfiles_files: "{{ dotfiles_files_common + dotfiles_files_darwin }}"
+    - name: Create folder for .config
+      command: mkdir -p ~/.config
+    - name: dotfiles_files_common
+      when: ansible_os_family != 'Darwin'
+      set_fact:
+        dotfiles_files: "{{ dotfiles_files_common }}"
+    - name: dotfiles_files_common - MacOS
+      when: ansible_os_family == 'Darwin'
+      set_fact:
+        dotfiles_files: "{{ dotfiles_files_common + dotfiles_files_darwin }}"
 
   roles:
     - role: geerlingguy.mac.homebrew
