@@ -1,9 +1,25 @@
 #!/bin/bash
+if [ "$(uname -s)" == "Linux" ]; then
+if ! command -v git &> /dev/null
+then
+    SUDO=''
+    if (( $EUID != 0 )); then
+        SUDO='sudo'
+    fi
+    $SUDO  apt install git
+ 
+fi
+fi
 if ! command -v brew &> /dev/null
 then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else 
    echo "brew already installed"
+fi
+  
+if [ "$(uname -s)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 if ! command -v ansible &> /dev/null
@@ -13,8 +29,6 @@ else
    echo "ansible already installed"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 git clone https://github.com/naimo84/ansible-devenv-playbook
 cd ansible-devenv-playbook
-ansible-galaxy install -r requirements.yml
+LC_ALL=C.UTF-8 ansible-galaxy install -r requirements.yml
