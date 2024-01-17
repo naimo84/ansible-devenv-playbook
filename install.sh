@@ -13,6 +13,8 @@ else
    echo "ansible already installed"
 fi
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 git clone https://github.com/naimo84/ansible-devenv-playbook
 cd ansible-devenv-playbook
 ansible-galaxy install -r requirements.yml
