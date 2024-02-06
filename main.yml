@@ -40,6 +40,8 @@
         - fzf
         - vimpager
         - git-filter-repo
+        - thefuck
+        - tldr
         - zig
         - btop
     - name: Install Krew plugins
